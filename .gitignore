@@ -1,0 +1,26 @@
+# Dependencies
+node_modules
+.npm
+
+# Next.js
+.next/
+out/
+build/
+*.tsbuildinfo
+
+# Environment variables - NEVER commit these
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Misc
+.DS_Store
+*.pem
+*.log
+.vercel
+
+# Local runtime helpers / generated files
+run.stdout.log
+run.stderr.log
