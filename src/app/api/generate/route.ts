@@ -5,7 +5,6 @@ import { shouldUseSupabase } from '@/lib/config';
 import { createGoogleClient } from '@/lib/google/client';
 import { generateImageWithFlow, generateVideoWithFlow } from '@/lib/flow/flowService';
 
-const genai = createGoogleClient();
 const FALLBACK_IMAGE_MODEL = 'gemini-2.5-flash-image';
 
 function dedupeImages(images: Array<{ url: string; mimeType: string; base64: string }>) {
@@ -201,6 +200,7 @@ export async function POST(request: NextRequest) {
 
     if (type === 'audio') {
       const { generateSpeech } = await import('@/lib/gemini/geminiService');
+      const genai = createGoogleClient();
       const base64Wav = await generateSpeech(genai, body.text, body.voiceName);
       return NextResponse.json({ base64: base64Wav, creditsRemaining });
     }

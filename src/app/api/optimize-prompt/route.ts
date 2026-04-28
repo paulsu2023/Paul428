@@ -4,8 +4,6 @@ import { createGoogleClient } from '@/lib/google/client';
 import { shouldUseSupabase } from '@/lib/config';
 import { GEMINI_MODEL_ANALYSIS } from '@/constants';
 
-const genai = createGoogleClient();
-
 export async function POST(request: NextRequest) {
   try {
     if (shouldUseSupabase) {
@@ -38,6 +36,7 @@ Visual Description: ${visualDesc}
 Current Prompt: ${currentPrompt}
 Produce a concise but descriptive English image prompt with premium TikTok realism, single-frame composition, and explicit negative constraints.`;
 
+    const genai = createGoogleClient();
     const response = await genai.models.generateContent({
       model: GEMINI_MODEL_ANALYSIS,
       contents: [{ role: 'user', parts: [{ text: promptText }] }],
